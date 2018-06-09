@@ -1,0 +1,13 @@
+$gap: 5
+$st : 1
+$ed : 10
+$sides: (top, bottom, left,right, '')
+$classes : (padding,margin)
+@for $i from $st through $ed
+	@each $side in $sides
+		@each $cls in $classes
+			$prefix: '-'
+			@if $side == ''
+				$prefix: ''
+			.#{$cls}#{$prefix}#{$side}-#{$i*$gap}
+				#{$cls}#{$prefix}#{$side}: #{$gap * $i}px

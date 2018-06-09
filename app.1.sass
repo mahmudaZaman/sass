@@ -1,0 +1,100 @@
+$bgColor: #d2e1dd
+$textColor: #999999
+$black: #000000
+$grey: #333333
+$background-colors-list: #4BC2A5 #606F40 #6648CA #6B6022 #2F54E9
+$border-colors-list: #ff9900 #77ff66 #73C227 #C23E50 #7BAFC2
+$colors-list: #111 #222 #333 #444 #555
+$colors-names: red green yellow orange blue
+
+body
+	color: $textColor
+
+.roundedContent
+	width: 80%
+	height: auto
+	margin: 0 auto
+	padding: 15px
+	background: $bgColor
+	border-radius: 3px
+	box-shadow: 2px 2px 2px $grey
+
+=box($height, $width, $backgroundColor)
+	height: $height
+	width: $width
+	background-color: $backgroundColor
+	margin-bottom: 5px
+	border: 1px solid black
+
+.box-1
+	+box(200px, 100%, grey)
+
+.box-2
+	+box(200px, 100%, blue)
+
+.box-3
+	+box(200px, 100%, red)
+
+@each $current-color in $colors-list
+	$i: index($colors-list, $current-color)
+	$name: nth($colors-names, $i)
+	.stuff-#{$name}
+		color: $current-color
+		background-color: nth($background-colors-list, $i)
+		border: 1px solid nth($border-colors-list, $i)
+
+//z-index
+@for $i from 1 through 10
+	.z-index-#{$i*2}
+		z-index: 2 * $i
+
+//spacing
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100)
+$sides: (top, bottom, left, right)
+@each $space in $spaceamounts
+	@each $side in $sides
+		.m-#{str-slice($side, 0, 1)}-#{$space}
+			margin-#{$side}: #{$space}px !important
+		.p-#{str-slice($side, 0, 1)}-#{$space}
+			padding-#{$side}: #{$space}px !important
+
+@each $space in $spaceamounts
+    .m-#{$space}
+        margin: #{$space}px !important
+    .p-#{$space}
+        padding: #{$space}px !important
+
+
+//spacing
+$gap: 5
+@for $i from 1 through 10
+    .padding-#{$i*$gap}
+        padding: ($gap * $i)px
+
+    .padding-top-#{$i*$gap}
+        padding-top: ($gap * $i)px
+
+    .padding-bottom-#{$i*$gap}
+        padding-bottom: ($gap * $i)px
+    
+    .padding-left-#{$i*$gap}
+        padding-left: ($gap * $i)px
+
+    .padding-right-#{$i*$gap}
+        padding-right: ($gap * $i)px
+
+//font-size
+$gap: 2
+@for $i from 1 through 10
+    .font-size-#{$i*$gap}
+        font-size: ($gap * $i)px
+
+//square
+$gap: 10
+@for $i from 10 through 20
+    .square-#{$i * $gap}
+        height: ($gap * $i)px
+        width: ($gap * $i)px
+
+
+
